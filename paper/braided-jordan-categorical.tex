@@ -1,0 +1,438 @@
+% Version: v1 (2026-10-29), first draft: derivations of the symmetrized product mu(1 + c) in a braided monoidal category, with the defect criterion, the commutative case, the derivation object and a twisted involution.
+\documentclass[]{interact}
+\usepackage[utf8]{inputenc}
+
+\usepackage{mathtools}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{amsfonts}
+\usepackage{enumerate}
+\usepackage{enumitem}
+
+\usepackage[hidelinks,pagebackref=false]{hyperref}
+\usepackage[all]{hypcap}
+\hypersetup{linktoc=all}
+
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage[yyyymmdd,hhmmss]{datetime}
+\usepackage{float}
+
+\usepackage[numbers,sort&compress]{natbib}
+\bibpunct[, ]{[}{]}{,}{n}{,}{,}
+\renewcommand\bibfont{\fontsize{10}{12}\selectfont}
+\makeatletter
+\def\NAT@def@citea{\def\@citea{\NAT@separator}}
+\makeatother
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{claim}[theorem]{Claim}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{notation}{Notation}
+
+\allowdisplaybreaks
+\newcommand{\Der}{\mathrm{Der}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\id}{\mathrm{id}}
+
+\newcommand{\paperversion}{1}
+
+\begin{document}
+\title{Derivations of the Symmetrized Product in a Braided Monoidal Category}
+\author{
+\name{Abderrahim Adrabi\textsuperscript{a,b}\thanks{CONTACT A. Adrabi. Email: abderrahim.adrabi@um5r.ac.ma}}
+	\affil{\textsuperscript{a}Faculty of Sciences, Mohammed V University in Rabat, Morocco;\\ \textsuperscript{b}Faculty of Educational Sciences, Mohammed V University in Rabat, Morocco}
+}
+
+\history{Preprint version \paperversion, compiled \today}
+
+\maketitle
+
+\begin{abstract}
+Let $A$ be an algebra in a braided monoidal category in which morphisms can be added.
+Let $c$ be the braiding on $A \otimes A$.
+The symmetrized product of $A$ is $\mu(1 + c)$, and the antisymmetrized product is $\mu(1 - c)$.
+A derivation of a product is a morphism $D \colon A \to A$ that satisfies the Leibniz rule for that product.
+The Leibniz defect of $D$ decides all cases.
+It shows that $D$ is a derivation of $\mu(1 \pm c)$ exactly when the defect composed with $1 \pm c$ vanishes.
+If no nonzero morphism is killed by $2$, a derivation of both products is a derivation of $\mu$.
+For a commutative product, the derivations of $\mu(1 + c)$ and of $\mu$ coincide.
+In a symmetric category the derivations form an object that contains the derivation object of Pareigis.
+Let $\alpha$ be an involution of $A$ and let $\sigma = (\alpha \otimes \alpha)c$ be the twisted braiding.
+If $\mu$ is commutative and $D$ commutes with $\alpha$, then a derivation of $\mu_\sigma$ has a defect that is killed by $1 + (\alpha \otimes \alpha)$, and it vanishes on pairs of eigenvectors of $\alpha$ with the same eigenvalue.
+\end{abstract}
+
+\begin{keywords}
+braided monoidal category; derivation; symmetrized product; Jordan derivation; Leibniz defect
+\end{keywords}
+
+\begin{amscode}
+MSC 2020: 18M15; 16W25; 17C50
+\end{amscode}
+
+\section{Introduction}\label{sec:intro}
+
+A derivation of an algebra $A$ is a linear map $D$ with $D(xy) = D(x)y + xD(y)$.
+\citet[Part I]{Jacobson1937} studied the derivations of an arbitrary nonassociative algebra.
+Every associative algebra carries a second product, the sum $x \circ y = xy + yx$.
+Jordan, von Neumann and Wigner form a product $ab$ from the two products $a \times b$ and $b \times a$ of an associative system, and call this quasi-multiplication \citep[p.~64]{JordanVonNeumannWigner1934}.
+\citet[p.~1104]{Herstein1957} calls a derivation of this product a Jordan derivation.
+The sum is twice the Jordan product $\tfrac12 (xy + yx)$ of an associative algebra \citep[Example 2.1]{BresarZelmanov2025}.
+\citet[Theorem 3.1]{Herstein1957} proved that every Jordan derivation of a prime ring of characteristic not $2$ is a derivation.
+
+In a braided monoidal category the braiding $c$ replaces the swap of vector spaces \citep[Definition 2.1]{JoyalStreet1993}.
+The product $\mu(1 + c)$ is the sum of the product and its braided opposite. % claim-ok: the definition of mu_+ given in Section 2
+\citet[Claim 2.14]{GrazianiMakhloufMeniniPanaite2015} show that, for a symmetric algebra $(A, \mu, u, c)$, the morphism $\mu \circ (\mathrm{Id}_{A \otimes A} - c)$ defines a braided Lie algebra structure on $A$.
+\citet[Definition 5.5]{Pareigis1998} defines derivations of $\mu$ in the category of Yetter--Drinfeld modules.
+We found no source that states a derivation of $\mu(1 + c)$.
+
+This paper is the third of a series on symmetrized products. % claim-ok: states the place of this paper in the series
+The first paper defines braided-symmetric derivations of an algebra, which are derivations of the product $\mu + \mu\sigma$ for an involution $\sigma$ of $A \otimes A$ \citep[Definition 2.1]{Adrabi2026a}.
+The second treats the Lie derivations of an associative algebra as the derivations of its antisymmetrized product \citep[Section 4]{Adrabi2026b}.
+A Lie derivation of an associative algebra is a linear map $D$ with $D([x,y]) = [D(x), y] + [x, D(y)]$ \citep[p.~183]{Martindale1964}.
+Here the category is general, and the proofs use only the fact that the braiding is natural and that morphisms can be added.
+
+Section~\ref{sec:prelim} recalls the notions of the sources.
+Section~\ref{sec:defect} proves that the Leibniz defect decides the derivations of $\mu(1 \pm c)$ (Proposition~\ref{prop:defect-sym}) and that a derivation of both products is a derivation of $\mu$ (Theorem~\ref{thm:both}).
+Section~\ref{sec:commutative} treats a commutative product (Theorem~\ref{thm:commutative}) and the derivation object (Theorem~\ref{thm:object}).
+Section~\ref{sec:twisted} twists the braiding by a morphism $\alpha$ (Theorem~\ref{thm:twisted}).
+We end with one open question.
+
+\section{Preliminaries}\label{sec:prelim}
+This section recalls the notions of the sources that the paper uses, and it contains no new results.
+
+Throughout, $\mathcal{C}$ is a braided monoidal category in which every set of morphisms is an abelian group.
+Composition and the tensor product are bilinear, and $c_{X,Y} \colon X \otimes Y \to Y \otimes X$ is the braiding. % claim-ok: states the setting of the paper
+We omit the isomorphisms of associativity and of the unit, by the coherence theorem for braided monoidal categories \citep[Theorem 2.5]{JoyalStreet1993}.
+Let $\mu \colon A \otimes A \to A$ be a morphism, and write $c = c_{A,A}$.
+We do not assume that $\mu$ is associative.
+
+We recall the derivation of Pareigis, which is the model for the notion below. Here $\mathsf{C}$ is a category of Yetter--Drinfeld modules.
+
+\begin{definition}[{\citep[Definition 5.5]{Pareigis1998}}]\label{def:pareigis}
+Let $A$ be an algebra in $\mathsf{C}$ and let $\mathrm{end}(A)$ be the inner endomorphism object of $A$ in $\mathsf{C}$, that is, the Yetter--Drinfeld module $\mathrm{end}(A)$ satisfying $\mathsf{C}(X \otimes A, A) \cong \mathsf{C}(X, \mathrm{end}(A))$ for all $X \in \mathsf{C}$.
+It can be shown that $\mathrm{end}(A) = \{ f \in \Hom(A,A) \mid \exists \sum f_{(0)} \otimes f_{(1)} \in \Hom(A,A) \otimes K \;\forall a \in A : \sum f_{(0)}(a) \otimes f_{(1)} = \sum f(a_{(0)})_{(0)} \otimes f(a_{(0)})_{(1)} S(a_{(1)}) \}$ is the Yetter--Drinfeld module with the required universal property.
+The object $\mathrm{end}(A)$ operates on $A$ by a canonical map $\mathrm{ev} \colon \mathrm{end}(A) \otimes A \to A$ with $\mathrm{ev}(f \otimes a) = f(a)$.
+A derivation from $A$ to $A$ is a linear map $d \colon A \to A$ in $\mathrm{end}(A)$ such that $d(ab) = d(a)b + (1 \otimes d)(\tau \otimes 1)(d \otimes a \otimes b)$ for all $a, b \in A$.
+Observe that in the symmetric situation this means $d(ab) = d(a)b + ad(b)$.
+\end{definition}
+
+For the unit object as parameter, the braiding $\tau$ in Definition~\ref{def:pareigis} disappears, and the rule becomes a square.
+
+\begin{definition}\label{def:derivation} % ours: Definition 5.5 of Pareigis with the unit object as parameter and any morphism in place of the product
+Let $\nu \colon A \otimes A \to A$ be a morphism.
+A morphism $D \colon A \to A$ is a \emph{derivation of $\nu$} if $D \circ \nu = \nu \circ (D \otimes 1 + 1 \otimes D)$. % ours: the name for the unit object case
+\end{definition}
+
+Put $\mu_{\pm} = \mu \circ (1 \pm c)$.
+We call $\mu_+$ the \emph{symmetrized product} and $\mu_-$ the \emph{antisymmetrized product} of $\mu$. % ours: the names for the braided versions
+The rule of Definition~\ref{def:derivation} for $\mu_+$ says that the following square commutes.
+\[
+\begin{tikzcd}[column sep=large]
+A \otimes A \arrow[r, "\mu_+"] \arrow[d, "D \otimes 1 + 1 \otimes D"'] & A \arrow[d, "D"] \\
+A \otimes A \arrow[r, "\mu_+"'] & A
+\end{tikzcd}
+\]
+For vector spaces with the swap, $\mu_+$ is $x \otimes y \mapsto xy + yx$.
+Its derivations are the Jordan derivations of \citet[p.~1104]{Herstein1957}, as shown in the first paper of the series \citep[Remark 2.4]{Adrabi2026a}.
+
+The defect below measures how far $D$ is from a derivation of $\mu$. % claim-ok: signpost for the definition recalled next
+
+\begin{definition}[{\citep[Definition 3.1]{Adrabi2026a}}]\label{def:defect-recalled}
+The Leibniz defect of a linear map $D \colon A \to A$ is the bilinear map $E_D \colon A \times A \to A$ given, for $x, y \in A$, by $E_D(x,y) = D(xy) - D(x)y - xD(y)$.
+\end{definition}
+
+\section{The Leibniz defect}\label{sec:defect}
+The map is classical: \citet[Section 2]{Cusack1975} writes it $d(a,b) = D(ab) - aDb - (Da)b$ and studies Jordan derivations through it.
+The same formula gives the defect of a morphism $D \colon A \to A$ of $\mathcal{C}$, with $\Delta_D = D \otimes 1 + 1 \otimes D$:
+\[
+E_D = D \circ \mu - \mu \circ \Delta_D \colon A \otimes A \to A.
+\]
+So $D$ is a derivation of $\mu$ exactly when $E_D = 0$.
+The braiding commutes with $\Delta_D$. % claim-ok: states the lemma proved next
+
+\begin{lemma}\label{lem:natural}
+$c \circ \Delta_D = \Delta_D \circ c$.
+\end{lemma}
+
+\begin{proof}
+Since $c$ is natural, $c \circ (D \otimes 1) = (1 \otimes D) \circ c$ and $c \circ (1 \otimes D) = (D \otimes 1) \circ c$.
+Adding the two equations gives the claim.
+\end{proof}
+
+The lemma is the commutative square
+\[
+\begin{tikzcd}[column sep=large]
+A \otimes A \arrow[r, "c"] \arrow[d, "\Delta_D"'] & A \otimes A \arrow[d, "\Delta_D"] \\
+A \otimes A \arrow[r, "c"'] & A \otimes A
+\end{tikzcd}
+\]
+and it gives the main criterion.
+
+\begin{proposition}\label{prop:defect-sym}
+Let $D \colon A \to A$ be a morphism. Then
+\[
+D \circ \mu_{\pm} - \mu_{\pm} \circ \Delta_D = E_D \circ (1 \pm c).
+\]
+So $D$ is a derivation of $\mu_+$ exactly when $E_D \circ (1 + c) = 0$, and a derivation of $\mu_-$ exactly when $E_D \circ (1 - c) = 0$.
+\end{proposition}
+
+\begin{proof}
+By Lemma~\ref{lem:natural}, $\Delta_D \circ (1 \pm c) = (1 \pm c) \circ \Delta_D$.
+Hence
+\[
+D \mu (1 \pm c) - \mu (1 \pm c) \Delta_D = D \mu (1 \pm c) - \mu \Delta_D (1 \pm c) = E_D (1 \pm c). \qedhere
+\]
+\end{proof}
+
+A derivation of $\mu$ has zero defect, so it satisfies both criteria.
+
+\begin{corollary}\label{cor:inclusion}
+A derivation of $\mu$ is a derivation of $\mu_+$ and of $\mu_-$.
+\end{corollary}
+
+\begin{proof}
+If $E_D = 0$, then $E_D \circ (1 \pm c) = 0$, and Proposition~\ref{prop:defect-sym} applies.
+\end{proof}
+
+The converse needs one condition on $\mathcal{C}$. % claim-ok: signpost for the definition and theorem that follow
+We say $\mathcal{C}$ is \emph{$2$-torsion free} if $f + f = 0$ implies $f = 0$ for every morphism $f$. % ours: the name for the condition on morphisms
+
+Bre\v{s}ar proved that every Jordan derivation of a ring with a suitable hypothesis is a derivation \citep[Theorem 1]{Bresar1988}.
+The next theorem uses two products and no hypothesis on $A$. % claim-ok: signpost for the theorem that follows
+
+\begin{theorem}\label{thm:both}
+Let $\mathcal{C}$ be $2$-torsion free, and let $D \colon A \to A$ be a morphism that is a derivation of $\mu_+$ and of $\mu_-$. Then $E_D = 0$, that is, $D$ is a derivation of $\mu$.
+\end{theorem}
+
+\begin{proof}
+By Proposition~\ref{prop:defect-sym}, $E_D (1 + c) = 0$ and $E_D (1 - c) = 0$.
+Adding gives $E_D + E_D = 0$, so $E_D = 0$.
+\end{proof}
+
+\section{The commutative case and the derivation object}\label{sec:commutative}
+
+Call $\mu$ \emph{commutative} if $\mu \circ c = \mu$. % ours: the braided form of commutativity, the standard rule for an algebra in a braided category
+
+Theorem~\ref{thm:both} needs both products.
+For a commutative product the symmetrized product alone decides.
+
+\begin{theorem}\label{thm:commutative}
+Let $\mathcal{C}$ be $2$-torsion free and let $\mu$ be commutative.
+Then the derivations of $\mu_+$ are the derivations of $\mu$.
+\end{theorem}
+
+\begin{proof}
+By Lemma~\ref{lem:natural} and commutativity,
+\[
+E_D c = D \mu c - \mu \Delta_D c = D \mu - \mu c \Delta_D = D \mu - \mu \Delta_D = E_D.
+\]
+So $E_D (1 + c) = E_D + E_D$.
+By Proposition~\ref{prop:defect-sym}, $D$ derives $\mu_+$ exactly when $E_D + E_D = 0$, that is, when $E_D = 0$.
+\end{proof}
+
+The proof is the triangle
+\[
+\begin{tikzcd}[column sep=large]
+A \otimes A \arrow[r, "c"] \arrow[dr, "E_D"'] & A \otimes A \arrow[d, "E_D"] \\
+ & A
+\end{tikzcd}
+\]
+which commutes for a commutative product. % claim-ok: the triangle restates the first line of the proof of Theorem 3.1
+For vector spaces with the swap, $\mu_+(x \otimes y) = 2xy$ for a commutative algebra.
+The theorem then says that every Jordan derivation of a commutative algebra is a derivation when no nonzero element is killed by $2$. % claim-ok: restates Theorem 3.1 for vector spaces
+
+The derivations of Pareigis form an object, not only a set. % claim-ok: signpost for the family defect and the theorem on the derivation object
+We show that the same holds for $\mu_+$ when the braiding is a symmetry, that is, $c_{Y,X} \circ c_{X,Y} = \id$.
+For an object $T$, a \emph{$T$-family} is a morphism $f \colon T \otimes A \to A$. % ours: the family form of a derivation, a morphism T tensor A to A as in the defining property of the object end(A) of Pareigis
+Put
+\[
+\ell_f = f \otimes 1, \qquad
+r_f = (1 \otimes f) \circ (c_{T,A} \otimes 1),
+\]
+as morphisms $T \otimes A \otimes A \to A \otimes A$.
+Define the defect of the family by
+\[
+E_f = f \circ (T \otimes \mu) - \mu \circ \ell_f - \mu \circ r_f \colon T \otimes A \otimes A \to A.
+\]
+For the unit object $T$, the family $f$ is a morphism $A \to A$, and $E_f$ is the defect of the previous section.
+For Yetter--Drinfeld modules, $E_f = 0$ is the rule of Definition~\ref{def:pareigis}.
+Write $E^+_f$ for the same expression with $\mu$ replaced by $\mu_+$.
+
+\begin{lemma}\label{lem:family}
+Let $\mathcal{C}$ be symmetric. For every $T$-family $f$,
+\[
+E^+_f = E_f \circ (T \otimes (1 + c)).
+\]
+\end{lemma}
+
+\begin{proof}
+We first show
+\[
+c \circ \ell_f = r_f \circ (T \otimes c), \qquad c \circ r_f = \ell_f \circ (T \otimes c).
+\]
+The first equation follows because $c$ is natural in its first variable, applied to $f$, and from the hexagon axiom for $c_{T \otimes A, A}$.
+The second equation follows in the same way from the second variable and the hexagon axiom for $c_{A, T \otimes A}$.
+It also uses $c_{A,T} \circ c_{T,A} = \id$, which is where the symmetry is needed.
+Now
+\[
+\mu_+ \ell_f + \mu_+ r_f = \mu \ell_f + \mu r_f (T \otimes c) + \mu r_f + \mu \ell_f (T \otimes c) = \mu(\ell_f + r_f)\,(T \otimes (1 + c)).
+\]
+Also $f \circ (T \otimes \mu_+) = f \circ (T \otimes \mu) \circ (T \otimes (1 + c))$.
+Subtracting gives the claim.
+\end{proof}
+
+The lemma shows that the family defect for $\mu_+$ is the family defect for $\mu$ composed with $T \otimes (1 + c)$.
+This gives the objects.
+
+\begin{theorem}\label{thm:object}
+Let $\mathcal{C}$ be symmetric and closed, and let $\mathcal{C}$ have kernels.
+Then there are objects $\Der(\mu)$ and $\Der(\mu_+)$ with
+\[
+\Hom(T, \Der(\mu)) \cong \{ f \colon T \otimes A \to A \mid E_f = 0 \}, \qquad
+\Hom(T, \Der(\mu_+)) \cong \{ f \colon T \otimes A \to A \mid E^+_f = 0 \},
+\]
+natural in $T$, and $\Der(\mu)$ is a subobject of $\Der(\mu_+)$.
+\end{theorem}
+
+\begin{proof}
+Write $[X,Y]$ for the internal hom, with $\Hom(T, [X,Y]) \cong \Hom(T \otimes X, Y)$.
+The assignment $f \mapsto E_f$ is natural in $T$, because the braiding is natural.
+A natural map between the functors represented by $[A,A]$ and $[A \otimes A, A]$ comes from a morphism, so $f \mapsto E_f$ is induced by a morphism $\Phi \colon [A,A] \to [A \otimes A, A]$.
+By Lemma~\ref{lem:family}, the assignment $f \mapsto E^+_f$ comes from $\Phi_+ = (1 + c)^* \circ \Phi$, where $(1 + c)^*$ is composition with $1 + c$.
+Put $\Der(\mu) = \ker \Phi$ and $\Der(\mu_+) = \ker \Phi_+$.
+The two isomorphisms follow from the universal property of the kernel and the defining property of the internal hom.
+Since $\Phi_+ = (1 + c)^* \Phi$, the kernel of $\Phi$ lies in the kernel of $\Phi_+$.
+\end{proof}
+
+The kernel diagram of the proof is
+\[
+\begin{tikzcd}[column sep=large]
+\Der(\mu) \arrow[r, hook] \arrow[dr, hook] & {[A,A]} \arrow[r, "\Phi"] \arrow[d, "\Phi_+"'] & {[A \otimes A, A]} \arrow[dl, "(1 + c)^*"] \\
+ & {[A \otimes A, A]} &
+\end{tikzcd}
+\]
+and $\Der(\mu_+) = \ker \Phi_+$ contains $\Der(\mu)$.
+The first object is the one of Pareigis. % claim-ok: restates Remark 3.4 that follows
+
+\begin{remark}\label{rem:pareigis}
+For Yetter--Drinfeld modules with a symmetric braiding, $\Der(\mu)$ is the object $\mathrm{Der}(A)$ of \citet[Definition 5.5]{Pareigis1998}.
+\end{remark}
+
+Barnes, Schenkel and Szabo define derivations as an equalizer in the module category of a quasi-Hopf algebra \citep[Definition 3.4]{BarnesSchenkelSzabo2016}.
+
+\begin{definition}[{\citep[Definition 3.4]{BarnesSchenkelSzabo2016}}]\label{def:bss}
+Let $A$ be an object in the category of commutative algebras in the module category of a quasi-Hopf algebra $H$.
+The \emph{derivations} of $A$ is the object $\mathrm{der}(A)$ in that module category which is defined by the equalizer
+\[
+\mathrm{der}(A) \longrightarrow \mathrm{end}(A) \rightrightarrows \hom(A, \mathrm{end}(A))
+\]
+of the two morphisms $\zeta([\cdot,\cdot])$ and $\zeta(l \circ \mathrm{ev})$, where $l$ is the left action induced by the product of $A$.
+\end{definition}
+
+Theorem~\ref{thm:object} gives $\Der(\mu)$ as a kernel in any symmetric closed category with kernels, and the definition above gives $\mathrm{der}(A)$ as an equalizer in the module category of a quasi-Hopf algebra.
+
+\section{A twisted involution}\label{sec:twisted}
+
+Let $\alpha \colon A \to A$ be a morphism and put $\sigma = (\alpha \otimes \alpha) \circ c$ and $\mu_\sigma = \mu \circ (1 + \sigma)$.
+For vector spaces with the swap and an involutive automorphism or anti-automorphism $\alpha$, the map $\sigma$ is the twisted swap of the first paper.
+There the derivations of $\mu_\sigma$ that commute with $\alpha$ equal the derivations of $\mu$ that commute with $\alpha$, for a commutative reduced algebra with $2$ invertible \citep[Theorem 4.1]{Adrabi2026a}.
+We prove the part of that theorem that holds in a general category.
+We do not assume that $\alpha$ is compatible with the product.
+Fuchs, Runkel and Schweigert use a map $\sigma$ with $\sigma \circ \mu = \mu \circ c \circ (\sigma \otimes \sigma)$ \citep[Definition 2]{FuchsRunkelSchweigert2005}.
+We do not use that rule.
+
+\begin{theorem}\label{thm:twisted}
+Let $\mathcal{C}$ be $2$-torsion free, let $\mu$ be commutative, and let $D \colon A \to A$ satisfy $D \alpha = \alpha D$.
+\begin{enumerate}[label=(\roman*)]
+\item $D \mu_\sigma - \mu_\sigma \Delta_D = E_D \circ (1 + \sigma)$.
+\item If $D$ is a derivation of $\mu_\sigma$, then $E_D + E_D \circ (\alpha \otimes \alpha) = 0$.
+\item Let $\varepsilon \in \{1, -1\}$ and let $p, p' \colon X \to A$ satisfy $\alpha p = \varepsilon p$ and $\alpha p' = \varepsilon p'$. If $D$ is a derivation of $\mu_\sigma$, then $E_D \circ (p \otimes p') = 0$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) Since $D \alpha = \alpha D$, we have $\Delta_D (\alpha \otimes \alpha) = (\alpha \otimes \alpha) \Delta_D$.
+With Lemma~\ref{lem:natural}, $\Delta_D \sigma = \sigma \Delta_D$.
+The computation of Proposition~\ref{prop:defect-sym} gives (i).
+
+(ii) By (i) and the hypothesis, $E_D (1 + \sigma) = 0$.
+Now $E_D \sigma = E_D (\alpha \otimes \alpha) c$, and $c$ commutes with $\alpha \otimes \alpha$ because $c$ is natural.
+As in the proof of Theorem~\ref{thm:commutative}, $E_D c = E_D$, so $E_D \sigma = E_D (\alpha \otimes \alpha)$.
+Hence $E_D + E_D (\alpha \otimes \alpha) = 0$.
+
+(iii) Since $(\alpha \otimes \alpha)(p \otimes p') = \varepsilon^2 (p \otimes p') = p \otimes p'$, composing (ii) with $p \otimes p'$ gives $E_D (p \otimes p') + E_D (p \otimes p') = 0$.
+So $E_D (p \otimes p') = 0$.
+\end{proof}
+
+For vector spaces and an involution $\alpha$ with $2$ invertible, $A = A_+ \oplus A_-$.
+Part (iii) says that $E_D$ vanishes on $A_+ \otimes A_+$ and on $A_- \otimes A_-$. % claim-ok: restates Theorem 4.1(iii) for vector spaces
+The vanishing on $A_+ \otimes A_-$ needs a reduced commutative algebra \citep[Theorem 4.1]{Adrabi2026a}.
+It has no form in a general category. % claim-ok: states a limit of Theorem 4.1, shown by the hypothesis on the algebra
+
+We end with a question.
+In the survey of Bre\v{s}ar and Zelmanov, algebras are over a field of characteristic not $2$ \citep[Section 1]{BresarZelmanov2025}, and the following theorem holds.
+
+\begin{theorem}[{\citep[Theorem 11.1]{BresarZelmanov2025}}]\label{thm:semiprime}
+A Jordan derivation of a semiprime algebra is a derivation.
+\end{theorem}
+
+For vector spaces with the flip as braiding, Corollary~\ref{cor:inclusion} gives $\Der(\mu) \subseteq \Der(\mu_+)$, and Theorem~\ref{thm:semiprime} gives the converse inclusion for semiprime algebras.
+Which hypotheses on $(\mathcal{C}, A)$ give $\Der(\mu_+) = \Der(\mu)$ when $\mu$ is not commutative?
+
+\begin{thebibliography}{99}
+
+\bibitem[Adrabi(2026a)]{Adrabi2026a}
+Adrabi, A.: Braided-symmetric derivations of algebras. Preprint (2026). \url{https://github.com/abderrahim-lectures/braided-sym-deriv}.
+
+\bibitem[Adrabi(2026b)]{Adrabi2026b}
+Adrabi, A.: Jordan and Lie derivations as derivations of the symmetrized and antisymmetrized products. Preprint (2026). \url{https://github.com/abderrahim-lectures/jordan-lie-symmetrized}.
+
+\bibitem[Barnes et~al.(2016)]{BarnesSchenkelSzabo2016}
+G.~E. Barnes, A. Schenkel and R.~J. Szabo, Nonassociative geometry in quasi-Hopf representation categories II: connections and curvature, \emph{J. Geom. Phys.} 106 (2016), 234--255.
+
+\bibitem[Bre\v{s}ar(1988)]{Bresar1988}
+Bre\v{s}ar, M.: Jordan derivations on semiprime rings. Proc. Amer. Math. Soc. \textbf{104}(4), 1003--1006 (1988).
+
+\bibitem[Bre\v{s}ar and Zelmanov(2025)]{BresarZelmanov2025}
+Bre\v{s}ar, M., Zelmanov, E.: Jordan homomorphisms: a survey. Serdica Math. J. \textbf{51}, 203--230 (2025).
+
+\bibitem[Cusack(1975)]{Cusack1975}
+Cusack, J.M.: Jordan derivations on rings. Proc. Amer. Math. Soc. \textbf{53}(2), 321--324 (1975).
+
+\bibitem[Fuchs et~al.(2005)]{FuchsRunkelSchweigert2005}
+Fuchs, J., Runkel, I., Schweigert, C.: Ribbon categories and (unoriented) CFT: Frobenius algebras, automorphisms, reversions. arXiv:math/0511590 (2005).
+
+\bibitem[Graziani et~al.(2015)]{GrazianiMakhloufMeniniPanaite2015}
+Graziani, G., Makhlouf, A., Menini, C., Panaite, F.: BiHom-associative algebras, BiHom-Lie algebras and BiHom-bialgebras. SIGMA \textbf{11}, 086 (2015).
+
+\bibitem[Herstein(1957)]{Herstein1957}
+Herstein, I.N.: Jordan derivations of prime rings. Proc. Amer. Math. Soc. \textbf{8}, 1104--1110 (1957).
+
+\bibitem[Jacobson(1937)]{Jacobson1937}
+Jacobson, N.: Abstract derivation and Lie algebras. Trans. Amer. Math. Soc. \textbf{42}(2), 206--224 (1937).
+
+\bibitem[Jordan et~al.(1934)]{JordanVonNeumannWigner1934}
+Jordan, P., von Neumann, J., Wigner, E.: On an algebraic generalization of the quantum mechanical formalism. Ann. of Math. \textbf{35}(1), 29--64 (1934).
+
+\bibitem[Joyal and Street(1993)]{JoyalStreet1993}
+Joyal, A., Street, R.: Braided tensor categories. Adv. Math. \textbf{102}(1), 20--78 (1993).
+
+\bibitem[Martindale(1964)]{Martindale1964}
+Martindale, W.S., III: Lie derivations of primitive rings. Michigan Math. J. \textbf{11}, 183--187 (1964).
+
+\bibitem[Pareigis(1998)]{Pareigis1998}
+Pareigis, B.: On Lie algebras in the category of Yetter--Drinfeld modules. arXiv:q-alg/9612023 (1998).
+
+\end{thebibliography}
+
+\end{document}
