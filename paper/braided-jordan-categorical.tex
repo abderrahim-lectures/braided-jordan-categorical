@@ -1,4 +1,4 @@
-% Version: v1 (2026-10-29), first draft: derivations of the symmetrized product mu(1 + c) in a braided monoidal category, with the defect criterion, the commutative case, the derivation object and a twisted involution.
+% Version: v2 (2026-10-30), the antisymmetrized product mu(1 - c) is the braided commutator of Ion, and commutative means c-commutative; Ion 2010 cited with Definitions 1.4 and 1.5.
 \documentclass[]{interact}
 \usepackage[utf8]{inputenc}
 
@@ -44,7 +44,7 @@
 \newcommand{\Hom}{\operatorname{Hom}}
 \newcommand{\id}{\mathrm{id}}
 
-\newcommand{\paperversion}{1}
+\newcommand{\paperversion}{2}
 
 \begin{document}
 \title{Derivations of the Symmetrized Product in a Braided Monoidal Category}
@@ -135,6 +135,13 @@ A morphism $D \colon A \to A$ is a \emph{derivation of $\nu$} if $D \circ \nu = 
 
 Put $\mu_{\pm} = \mu \circ (1 \pm c)$.
 We call $\mu_+$ the \emph{symmetrized product} and $\mu_-$ the \emph{antisymmetrized product} of $\mu$. % ours: the names for the braided versions
+\citet[Definition 1.5]{Ion2010} defines a braided commutator on an associative algebra with a braiding.
+
+\begin{definition}[{\citep[Definition 1.5]{Ion2010}}]\label{def:ion}
+Let $(A, \nabla, 1, c)$ be a braided algebra. The map $[\cdot,\cdot]_A \colon A^{\otimes 2} \to A$, $[\cdot,\cdot]_A = \nabla(\mathrm{id}_{A^{\otimes 2}} - c)$ is called the \emph{braided commutator} on $A$.
+\end{definition}
+
+For an associative $\mu$ with the braiding $c$ of $A$, the antisymmetrized product $\mu_-$ is the braided commutator of Definition~\ref{def:ion}.
 The rule of Definition~\ref{def:derivation} for $\mu_+$ says that the following square commutes.
 \[
 \begin{tikzcd}[column sep=large]
@@ -221,7 +228,7 @@ Adding gives $E_D + E_D = 0$, so $E_D = 0$.
 
 \section{The commutative case and the derivation object}\label{sec:commutative}
 
-Call $\mu$ \emph{commutative} if $\mu \circ c = \mu$. % ours: the braided form of commutativity, the standard rule for an algebra in a braided category
+Call $\mu$ \emph{commutative} if $\mu \circ c = \mu$, the condition that \citet[Definition 1.4]{Ion2010} calls $c$-commutative for a braided algebra.
 
 Theorem~\ref{thm:both} needs both products.
 For a commutative product the symmetrized product alone decides.
@@ -417,6 +424,9 @@ Graziani, G., Makhlouf, A., Menini, C., Panaite, F.: BiHom-associative algebras,
 
 \bibitem[Herstein(1957)]{Herstein1957}
 Herstein, I.N.: Jordan derivations of prime rings. Proc. Amer. Math. Soc. \textbf{8}, 1104--1110 (1957).
+
+\bibitem[Ion(2010)]{Ion2010}
+Ion, B.: Relative PBW type theorems for symmetrically braided Hopf algebras. Preprint (2010). \url{https://arxiv.org/abs/1004.5022}.
 
 \bibitem[Jacobson(1937)]{Jacobson1937}
 Jacobson, N.: Abstract derivation and Lie algebras. Trans. Amer. Math. Soc. \textbf{42}(2), 206--224 (1937).
