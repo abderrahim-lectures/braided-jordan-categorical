@@ -1,3 +1,42 @@
+% Version: v3 (2026-11-01), corrections from a review of v2.
+% v3 changes, all local: the abstract now carries the 2-torsion-free hypothesis in the two places
+% where the corresponding theorem has it (the commutative case and the vanishing on eigenvectors);
+% the standing hypothesis of Section 2 is stated as enrichment over abelian groups instead of "every
+% set of morphisms is an abelian group"; Definition 2.1 is glossed (K, S, Sweedler notation) and the
+% sentence relating mu_- to the braided commutator now assumes a braided algebra, as in Ion's
+% Definition 1.4; Definition 4.5 writes the second morphism as zeta(l-hat o ev) with l-hat = zeta(l),
+% as in Barnes-Schenkel-Szabo Definition 3.4 (l o ev is not composable); the kernel diagram of
+% Theorem 4.3 was wrong (it drew a zero map as a monomorphism and omitted Der(mu_+)) and is redrawn,
+% and the display of Theorem 4.3 is split to remove an overfull box; Remark 4.4 cites the sentence
+% after Pareigis' Definition 5.5, where the object Der(A) is actually introduced; the introduction no
+% longer claims that the proofs use only naturality and addition; and Section 2 records the
+% specialisation to symmetric monoidal categories (mu(1 +- c) = mu +- mu c, (1 + c)(1 - c) = 0, and
+% the twist of an involution is an involution).
+% v3, second review pass (reference-grounded): the abstract states the standing hypothesis as
+% enrichment over abelian groups, as Section 2 does; Definition 4.5 restores the hypotheses of
+% Barnes-Schenkel-Szabo Definition 3.4 (a quasitriangular quasi-Hopf algebra and a braided
+% commutative algebra in its module category); the sentence introducing Ion's braided commutator
+% names his Definition 1.4; the Fuchs-Runkel-Schweigert map is renamed (their sigma is an
+% endomorphism of A, not of A(x)A); Claim 2.14 of Graziani et al. is reported as stated there, not
+% proved; and the paragraph after the proof of Theorem 4.3 records that only Lemma 4.2 uses the
+% symmetry, so that Der(mu) is available in a braided closed category with the kernel of Phi.
+% The kernel diagram after Theorem 4.3 now labels its middle vertical by id: the label Phi_+ that the
+% previous pass put there is a morphism [A,A] -> [A(x)A,A], not an endomorphism of [A,A].
+% Section 2 no longer claims that every statement holds in any symmetric monoidal category without the
+% further hypotheses (2-torsion freeness, closedness, kernels), nor that the section contains no new
+% results (it carries the symmetric specialisation); the abstract says "every case treated here"
+% instead of "all cases"; and "symmetric algebra" in the sense of Graziani et al. is glossed.
+% In Section 4, the first morphism of the Barnes-Schenkel-Szabo equalizer is now
+% zeta([.,.] o (id(x)l-hat)) with [.,.] the internal commutator of end(A), as their (3.10)-(3.11)
+% have it; "closed" is defined before Theorem 4.3; Remark 4.4 drops the symmetry (it is not used) and
+% gives the one-line argument from Pareigis' Corollary 5.6; and the family defect is identified with
+% Pareigis' rule at the universal family T = end(A), f = ev, not at the unit object.
+% The two remaining claim-ok comments in Section 5 now say Theorem 5.1, and the Pareigis entry of the
+% bibliography carries the journal data (Appl. Categ. Structures 6 (1998) 151-175), the archived copy
+% being the journal version.
+% Theorem 5.2 now carries the hypotheses of its source (associative, characteristic not 2), semiprime
+% is defined, and Cusack's Corollary 5 is named as the first proof, as the survey does; the sentence
+% introducing Bresar's Theorem 1 names its hypothesis instead of saying "a suitable hypothesis".
 % Version: v2 (2026-10-30), the antisymmetrized product mu(1 - c) is the braided commutator of Ion, and commutative means c-commutative; Ion 2010 cited with Definitions 1.4 and 1.5.
 \documentclass[]{interact}
 \usepackage[utf8]{inputenc}
@@ -44,7 +83,7 @@
 \newcommand{\Hom}{\operatorname{Hom}}
 \newcommand{\id}{\mathrm{id}}
 
-\newcommand{\paperversion}{2}
+\newcommand{\paperversion}{3}
 
 \begin{document}
 \title{Derivations of the Symmetrized Product in a Braided Monoidal Category}
@@ -58,17 +97,16 @@
 \maketitle
 
 \begin{abstract}
-Let $A$ be an algebra in a braided monoidal category in which morphisms can be added.
+Let $A$ be an object of a braided monoidal category enriched over abelian groups, and let $\mu \colon A \otimes A \to A$ be a product on $A$.
 Let $c$ be the braiding on $A \otimes A$.
 The symmetrized product of $A$ is $\mu(1 + c)$, and the antisymmetrized product is $\mu(1 - c)$.
 A derivation of a product is a morphism $D \colon A \to A$ that satisfies the Leibniz rule for that product.
-The Leibniz defect of $D$ decides all cases.
+The Leibniz defect of $D$ decides every case treated here.
 It shows that $D$ is a derivation of $\mu(1 \pm c)$ exactly when the defect composed with $1 \pm c$ vanishes.
-If no nonzero morphism is killed by $2$, a derivation of both products is a derivation of $\mu$.
-For a commutative product, the derivations of $\mu(1 + c)$ and of $\mu$ coincide.
-In a symmetric category the derivations form an object that contains the derivation object of Pareigis.
-Let $\alpha$ be an involution of $A$ and let $\sigma = (\alpha \otimes \alpha)c$ be the twisted braiding.
-If $\mu$ is commutative and $D$ commutes with $\alpha$, then a derivation of $\mu_\sigma$ has a defect that is killed by $1 + (\alpha \otimes \alpha)$, and it vanishes on pairs of eigenvectors of $\alpha$ with the same eigenvalue.
+If no nonzero morphism is killed by $2$, a derivation of both products is a derivation of $\mu$, and for a commutative product the derivations of $\mu(1 + c)$ and of $\mu$ coincide.
+In a symmetric closed category with kernels the derivations form an object that contains the derivation object of Pareigis.
+Let $\alpha$ be an endomorphism of $A$ with $\alpha^2 = \id_A$ and let $\sigma = (\alpha \otimes \alpha)c$ be the twist.
+If $\mu$ is commutative and $D$ commutes with $\alpha$, then a derivation of $\mu_\sigma$ has a defect that is killed by $1 + (\alpha \otimes \alpha)$; if moreover no nonzero morphism is killed by $2$, it vanishes on pairs of eigenvectors of $\alpha$ with the same eigenvalue.
 \end{abstract}
 
 \begin{keywords}
@@ -91,15 +129,15 @@ The sum is twice the Jordan product $\tfrac12 (xy + yx)$ of an associative algeb
 
 In a braided monoidal category the braiding $c$ replaces the swap of vector spaces \citep[Definition 2.1]{JoyalStreet1993}.
 The product $\mu(1 + c)$ is the sum of the product and its braided opposite. % claim-ok: the definition of mu_+ given in Section 2
-\citet[Claim 2.14]{GrazianiMakhloufMeniniPanaite2015} show that, for a symmetric algebra $(A, \mu, u, c)$, the morphism $\mu \circ (\mathrm{Id}_{A \otimes A} - c)$ defines a braided Lie algebra structure on $A$.
+\citet[Claim 2.14]{GrazianiMakhloufMeniniPanaite2015} state that, for a symmetric algebra $(A, \mu, u, c)$ in their sense (a braided unital algebra with $c^2 = \id_A$), the morphism $\mu \circ (\mathrm{Id}_{A \otimes A} - c)$ defines a braided Lie algebra structure on $A$; the claim is recalled there from Goyvaerts and Vercruysse.
 \citet[Definition 5.5]{Pareigis1998} defines derivations of $\mu$ in the category of Yetter--Drinfeld modules.
-We found no source that states a derivation of $\mu(1 + c)$.
+We found no source that treats derivations of $\mu(1 + c)$ for a general braided monoidal category.
 
 This paper is the third of a series on symmetrized products. % claim-ok: states the place of this paper in the series
 The first paper defines braided-symmetric derivations of an algebra, which are derivations of the product $\mu + \mu\sigma$ for an involution $\sigma$ of $A \otimes A$ \citep[Definition 2.1]{Adrabi2026a}.
 The second treats the Lie derivations of an associative algebra as the derivations of its antisymmetrized product \citep[Section 4]{Adrabi2026b}.
 A Lie derivation of an associative algebra is a linear map $D$ with $D([x,y]) = [D(x), y] + [x, D(y)]$ \citep[p.~183]{Martindale1964}.
-Here the category is general, and the proofs use only the fact that the braiding is natural and that morphisms can be added.
+Here the category is general, and the proofs use the axioms of a braided monoidal category and the additivity of morphisms, together with, where a statement says so, symmetry, $2$-torsion freeness, or closedness and kernels.
 
 Section~\ref{sec:prelim} recalls the notions of the sources.
 Section~\ref{sec:defect} proves that the Leibniz defect decides the derivations of $\mu(1 \pm c)$ (Proposition~\ref{prop:defect-sym}) and that a derivation of both products is a derivation of $\mu$ (Theorem~\ref{thm:both}).
@@ -108,21 +146,29 @@ Section~\ref{sec:twisted} twists the braiding by a morphism $\alpha$ (Theorem~\r
 We end with one open question.
 
 \section{Preliminaries}\label{sec:prelim}
-This section recalls the notions of the sources that the paper uses, and it contains no new results.
+This section recalls the notions of the sources that the paper uses; apart from the specialisation to symmetric monoidal categories recorded below, it contains no new results.
 
-Throughout, $\mathcal{C}$ is a braided monoidal category in which every set of morphisms is an abelian group.
-Composition and the tensor product are bilinear, and $c_{X,Y} \colon X \otimes Y \to Y \otimes X$ is the braiding. % claim-ok: states the setting of the paper
+Throughout, $\mathcal{C}$ is a braided monoidal category enriched over abelian groups: every hom-set is an abelian group, composition is bilinear, and the tensor product of morphisms is bilinear.
+Write $c_{X,Y} \colon X \otimes Y \to Y \otimes X$ for the braiding. % claim-ok: states the setting of the paper
 We omit the isomorphisms of associativity and of the unit, by the coherence theorem for braided monoidal categories \citep[Theorem 2.5]{JoyalStreet1993}.
 Let $\mu \colon A \otimes A \to A$ be a morphism, and write $c = c_{A,A}$.
 We do not assume that $\mu$ is associative.
+Every statement below holds, in particular, in a symmetric monoidal category, in which $c_{Y,X} \circ c_{X,Y} = \id$ for all $X, Y$; the hypotheses that go beyond braidedness are named in the statements that use them, namely $2$-torsion freeness in Theorems~\ref{thm:both}, \ref{thm:commutative} and \ref{thm:twisted}(iii), and closedness with kernels in Theorem~\ref{thm:object}.
+There the braiding on $A \otimes A$ is an involution, so that $\mu(1 \pm c) = \mu \pm \mu c$ and
+\[
+(1 + c)(1 - c) = (1 - c)(1 + c) = 0,
+\]
+and the twist $\sigma = (\alpha \otimes \alpha)c$ of Section~\ref{sec:twisted} is an involution whenever $\alpha$ is.
 
-We recall the derivation of Pareigis, which is the model for the notion below. Here $\mathsf{C}$ is a category of Yetter--Drinfeld modules.
+We recall Pareigis' definition of a derivation, which is the model for the notion below. Here $\mathsf{C}$ is a category of Yetter--Drinfeld modules.
 
 \begin{definition}[{\citep[Definition 5.5]{Pareigis1998}}]\label{def:pareigis}
 Let $A$ be an algebra in $\mathsf{C}$ and let $\mathrm{end}(A)$ be the inner endomorphism object of $A$ in $\mathsf{C}$, that is, the Yetter--Drinfeld module $\mathrm{end}(A)$ satisfying $\mathsf{C}(X \otimes A, A) \cong \mathsf{C}(X, \mathrm{end}(A))$ for all $X \in \mathsf{C}$.
-It can be shown that $\mathrm{end}(A) = \{ f \in \Hom(A,A) \mid \exists \sum f_{(0)} \otimes f_{(1)} \in \Hom(A,A) \otimes K \;\forall a \in A : \sum f_{(0)}(a) \otimes f_{(1)} = \sum f(a_{(0)})_{(0)} \otimes f(a_{(0)})_{(1)} S(a_{(1)}) \}$ is the Yetter--Drinfeld module with the required universal property.
+His description of it is $\mathrm{end}(A) = \{ f \in \Hom(A,A) \mid \exists \sum f_{(0)} \otimes f_{(1)} \in \Hom(A,A) \otimes K \;\forall a \in A : \sum f_{(0)}(a) \otimes f_{(1)} = \sum f(a_{(0)})_{(0)} \otimes f(a_{(0)})_{(1)} S(a_{(1)}) \}$, which is the Yetter--Drinfeld module with the required universal property.
 The object $\mathrm{end}(A)$ operates on $A$ by a canonical map $\mathrm{ev} \colon \mathrm{end}(A) \otimes A \to A$ with $\mathrm{ev}(f \otimes a) = f(a)$.
 A derivation from $A$ to $A$ is a linear map $d \colon A \to A$ in $\mathrm{end}(A)$ such that $d(ab) = d(a)b + (1 \otimes d)(\tau \otimes 1)(d \otimes a \otimes b)$ for all $a, b \in A$.
+Here $K$ is the Hopf algebra whose Yetter--Drinfeld modules form $\mathsf{C}$, $S$ is its antipode, and $\sum f_{(0)} \otimes f_{(1)}$, $\sum a_{(0)} \otimes a_{(1)}$ are Sweedler's notation for the components of $f$ and of the coaction on $A$.
+Equivalently, as \citet[proof of Corollary 5.6]{Pareigis1998} puts it, $d$ is a derivation when $m \circ (d \otimes 1 + 1 \otimes d) = d \circ m$ for the product $m$ of $A$, the tensor of $\mathrm{end}(A)$ with $A$ being the braided one, $(x \otimes y)(a \otimes b) = (\mathrm{ev} \otimes \mathrm{ev})(1 \otimes \tau \otimes 1)(x \otimes y \otimes a \otimes b)$.
 Observe that in the symmetric situation this means $d(ab) = d(a)b + ad(b)$.
 \end{definition}
 
@@ -135,13 +181,13 @@ A morphism $D \colon A \to A$ is a \emph{derivation of $\nu$} if $D \circ \nu = 
 
 Put $\mu_{\pm} = \mu \circ (1 \pm c)$.
 We call $\mu_+$ the \emph{symmetrized product} and $\mu_-$ the \emph{antisymmetrized product} of $\mu$. % ours: the names for the braided versions
-\citet[Definition 1.5]{Ion2010} defines a braided commutator on an associative algebra with a braiding.
+\citet[Definition 1.5]{Ion2010} defines a braided commutator on a braided algebra, in the sense of his Definition~1.4.
 
 \begin{definition}[{\citep[Definition 1.5]{Ion2010}}]\label{def:ion}
 Let $(A, \nabla, 1, c)$ be a braided algebra. The map $[\cdot,\cdot]_A \colon A^{\otimes 2} \to A$, $[\cdot,\cdot]_A = \nabla(\mathrm{id}_{A^{\otimes 2}} - c)$ is called the \emph{braided commutator} on $A$.
 \end{definition}
 
-For an associative $\mu$ with the braiding $c$ of $A$, the antisymmetrized product $\mu_-$ is the braided commutator of Definition~\ref{def:ion}.
+When $(A, \mu, 1, c)$ is a braided algebra in the sense of \citet[Definition 1.4]{Ion2010}, the antisymmetrized product $\mu_-$ is the braided commutator of Definition~\ref{def:ion}.
 The rule of Definition~\ref{def:derivation} for $\mu_+$ says that the following square commutes.
 \[
 \begin{tikzcd}[column sep=large]
@@ -214,7 +260,7 @@ If $E_D = 0$, then $E_D \circ (1 \pm c) = 0$, and Proposition~\ref{prop:defect-s
 The converse needs one condition on $\mathcal{C}$. % claim-ok: signpost for the definition and theorem that follow
 We say $\mathcal{C}$ is \emph{$2$-torsion free} if $f + f = 0$ implies $f = 0$ for every morphism $f$. % ours: the name for the condition on morphisms
 
-Bre\v{s}ar proved that every Jordan derivation of a ring with a suitable hypothesis is a derivation \citep[Theorem 1]{Bresar1988}.
+Cusack proved that every Jordan derivation of a $2$-torsion free semiprime ring is a derivation \citep[Theorem 4 and Corollary 5]{Cusack1975}, and Bre\v{s}ar gave a short proof \citep[Theorem 1]{Bresar1988}.
 The next theorem uses two products and no hypothesis on $A$. % claim-ok: signpost for the theorem that follows
 
 \begin{theorem}\label{thm:both}
@@ -254,9 +300,9 @@ A \otimes A \arrow[r, "c"] \arrow[dr, "E_D"'] & A \otimes A \arrow[d, "E_D"] \\
  & A
 \end{tikzcd}
 \]
-which commutes for a commutative product. % claim-ok: the triangle restates the first line of the proof of Theorem 3.1
+which commutes for a commutative product. % claim-ok: the triangle restates the first line of the proof of Theorem 4.1
 For vector spaces with the swap, $\mu_+(x \otimes y) = 2xy$ for a commutative algebra.
-The theorem then says that every Jordan derivation of a commutative algebra is a derivation when no nonzero element is killed by $2$. % claim-ok: restates Theorem 3.1 for vector spaces
+The theorem then says that every Jordan derivation of a commutative algebra is a derivation when no nonzero element is killed by $2$. % claim-ok: restates Theorem 4.1 for vector spaces
 
 The derivations of Pareigis form an object, not only a set. % claim-ok: signpost for the family defect and the theorem on the derivation object
 We show that the same holds for $\mu_+$ when the braiding is a symmetry, that is, $c_{Y,X} \circ c_{X,Y} = \id$.
@@ -272,7 +318,7 @@ Define the defect of the family by
 E_f = f \circ (T \otimes \mu) - \mu \circ \ell_f - \mu \circ r_f \colon T \otimes A \otimes A \to A.
 \]
 For the unit object $T$, the family $f$ is a morphism $A \to A$, and $E_f$ is the defect of the previous section.
-For Yetter--Drinfeld modules, $E_f = 0$ is the rule of Definition~\ref{def:pareigis}.
+For Yetter--Drinfeld modules and the universal family $T = \mathrm{end}(A)$, $f = \mathrm{ev}$, the equation $E_f = 0$ is the rule of Definition~\ref{def:pareigis}; for the unit object the braiding disappears and the rule is the untwisted Leibniz rule.
 Write $E^+_f$ for the same expression with $\mu$ replaced by $\mu_+$.
 
 \begin{lemma}\label{lem:family}
@@ -300,20 +346,21 @@ Subtracting gives the claim.
 
 The lemma shows that the family defect for $\mu_+$ is the family defect for $\mu$ composed with $T \otimes (1 + c)$.
 This gives the objects.
+Here \emph{closed} means that each $-\otimes X$ has a right adjoint $[X,-]$, so that $\Hom(T, [X,Y]) \cong \Hom(T \otimes X, Y)$.
 
 \begin{theorem}\label{thm:object}
 Let $\mathcal{C}$ be symmetric and closed, and let $\mathcal{C}$ have kernels.
 Then there are objects $\Der(\mu)$ and $\Der(\mu_+)$ with
-\[
-\Hom(T, \Der(\mu)) \cong \{ f \colon T \otimes A \to A \mid E_f = 0 \}, \qquad
-\Hom(T, \Der(\mu_+)) \cong \{ f \colon T \otimes A \to A \mid E^+_f = 0 \},
-\]
+\begin{align*}
+\Hom(T, \Der(\mu)) &\cong \{ f \colon T \otimes A \to A \mid E_f = 0 \},\\
+\Hom(T, \Der(\mu_+)) &\cong \{ f \colon T \otimes A \to A \mid E^+_f = 0 \},
+\end{align*}
 natural in $T$, and $\Der(\mu)$ is a subobject of $\Der(\mu_+)$.
 \end{theorem}
 
 \begin{proof}
 Write $[X,Y]$ for the internal hom, with $\Hom(T, [X,Y]) \cong \Hom(T \otimes X, Y)$.
-The assignment $f \mapsto E_f$ is natural in $T$, because the braiding is natural.
+The assignment $f \mapsto E_f$ is natural in $T$, because the braiding is natural and the tensor product is functorial in each variable.
 A natural map between the functors represented by $[A,A]$ and $[A \otimes A, A]$ comes from a morphism, so $f \mapsto E_f$ is induced by a morphism $\Phi \colon [A,A] \to [A \otimes A, A]$.
 By Lemma~\ref{lem:family}, the assignment $f \mapsto E^+_f$ comes from $\Phi_+ = (1 + c)^* \circ \Phi$, where $(1 + c)^*$ is composition with $1 + c$.
 Put $\Der(\mu) = \ker \Phi$ and $\Der(\mu_+) = \ker \Phi_+$.
@@ -324,46 +371,49 @@ Since $\Phi_+ = (1 + c)^* \Phi$, the kernel of $\Phi$ lies in the kernel of $\Ph
 The kernel diagram of the proof is
 \[
 \begin{tikzcd}[column sep=large]
-\Der(\mu) \arrow[r, hook] \arrow[dr, hook] & {[A,A]} \arrow[r, "\Phi"] \arrow[d, "\Phi_+"'] & {[A \otimes A, A]} \arrow[dl, "(1 + c)^*"] \\
- & {[A \otimes A, A]} &
+\Der(\mu) \arrow[r, hook] \arrow[d, hook'] & {[A,A]} \arrow[r, "\Phi"] \arrow[d, "\id"'] & {[A \otimes A, A]} \arrow[d, "(1 + c)^*"] \\
+\Der(\mu_+) \arrow[r, hook'] & {[A,A]} \arrow[r, "\Phi_+"'] & {[A \otimes A, A]}
 \end{tikzcd}
 \]
 and $\Der(\mu_+) = \ker \Phi_+$ contains $\Der(\mu)$.
-The first object is the one of Pareigis. % claim-ok: restates Remark 3.4 that follows
+Only Lemma~\ref{lem:family} uses the symmetry: the morphism $\Phi$, and with it the object $\Der(\mu)$, is available already in a braided monoidal closed category in which $\Phi$ has a kernel, because the naturality of $f \mapsto E_f$ in $T$ uses only the naturality of the braiding and the bifunctoriality of $\otimes$.
+The first object is the one of Pareigis. % claim-ok: restates Remark 4.4 that follows
 
 \begin{remark}\label{rem:pareigis}
-For Yetter--Drinfeld modules with a symmetric braiding, $\Der(\mu)$ is the object $\mathrm{Der}(A)$ of \citet[Definition 5.5]{Pareigis1998}.
+For Yetter--Drinfeld modules, with no symmetry assumed, $\Der(\mu)$ is the object $\mathrm{Der}(A)$ of \citet[Definition 5.5 and the paragraph following it]{Pareigis1998}: by the proof of his Corollary~5.6, a map $d \in \mathrm{end}(A)$ is a derivation exactly when $\mathrm m(d \otimes 1 + 1 \otimes d) = d\,\mathrm m$, an equation whose tensor is the braided one of that proof, and this is $\Phi(d) = 0$.
 \end{remark}
 
 Barnes, Schenkel and Szabo define derivations as an equalizer in the module category of a quasi-Hopf algebra \citep[Definition 3.4]{BarnesSchenkelSzabo2016}.
 
 \begin{definition}[{\citep[Definition 3.4]{BarnesSchenkelSzabo2016}}]\label{def:bss}
-Let $A$ be an object in the category of commutative algebras in the module category of a quasi-Hopf algebra $H$.
+Let $H$ be a quasitriangular quasi-Hopf algebra and let $A$ be a braided commutative algebra in the module category of $H$.
 The \emph{derivations} of $A$ is the object $\mathrm{der}(A)$ in that module category which is defined by the equalizer
 \[
 \mathrm{der}(A) \longrightarrow \mathrm{end}(A) \rightrightarrows \hom(A, \mathrm{end}(A))
 \]
-of the two morphisms $\zeta([\cdot,\cdot])$ and $\zeta(l \circ \mathrm{ev})$, where $l$ is the left action induced by the product of $A$.
+of the two morphisms $\zeta([\cdot,\cdot] \circ (\mathrm{id} \otimes \hat l))$ and $\zeta(\hat l \circ \mathrm{ev})$, where $[\cdot,\cdot]$ is the internal commutator of $\mathrm{end}(A)$, and $\hat l = \zeta(l) \colon A \to \mathrm{end}(A)$ is the currying of the left action $l \colon A \otimes A \to A$ induced by the product of $A$.
 \end{definition}
 
-Theorem~\ref{thm:object} gives $\Der(\mu)$ as a kernel in any symmetric closed category with kernels, and the definition above gives $\mathrm{der}(A)$ as an equalizer in the module category of a quasi-Hopf algebra.
+Theorem~\ref{thm:object} gives $\Der(\mu)$ as a kernel in any symmetric closed category with kernels, and the definition above gives $\mathrm{der}(A)$ as an equalizer in the module category of a quasitriangular quasi-Hopf algebra.
 
 \section{A twisted involution}\label{sec:twisted}
 
 Let $\alpha \colon A \to A$ be a morphism and put $\sigma = (\alpha \otimes \alpha) \circ c$ and $\mu_\sigma = \mu \circ (1 + \sigma)$.
+Since $\sigma^2 = (\alpha^2 \otimes \alpha^2) \circ c^2$, the map $\sigma$ is an involution of $A \otimes A$ when $\alpha^2 = \id_A$ and $c^2 = \id_{A \otimes A}$, in particular in a symmetric category; it is a braiding only when $\alpha$ is compatible with the braided structure, which we do not assume.
 For vector spaces with the swap and an involutive automorphism or anti-automorphism $\alpha$, the map $\sigma$ is the twisted swap of the first paper.
 There the derivations of $\mu_\sigma$ that commute with $\alpha$ equal the derivations of $\mu$ that commute with $\alpha$, for a commutative reduced algebra with $2$ invertible \citep[Theorem 4.1]{Adrabi2026a}.
 We prove the part of that theorem that holds in a general category.
 We do not assume that $\alpha$ is compatible with the product.
-Fuchs, Runkel and Schweigert use a map $\sigma$ with $\sigma \circ \mu = \mu \circ c \circ (\sigma \otimes \sigma)$ \citep[Definition 2]{FuchsRunkelSchweigert2005}.
+Fuchs, Runkel and Schweigert use an endomorphism $\varsigma \colon A \to A$ with $\varsigma \circ \mu = \mu \circ c \circ (\varsigma \otimes \varsigma)$ \citep[Definition 2]{FuchsRunkelSchweigert2005}.
+Their $\varsigma$ is a map on $A$, not on $A \otimes A$ like the $\sigma$ above.
 We do not use that rule.
 
 \begin{theorem}\label{thm:twisted}
-Let $\mathcal{C}$ be $2$-torsion free, let $\mu$ be commutative, and let $D \colon A \to A$ satisfy $D \alpha = \alpha D$.
+Let $D \colon A \to A$ satisfy $D \alpha = \alpha D$.
 \begin{enumerate}[label=(\roman*)]
 \item $D \mu_\sigma - \mu_\sigma \Delta_D = E_D \circ (1 + \sigma)$.
-\item If $D$ is a derivation of $\mu_\sigma$, then $E_D + E_D \circ (\alpha \otimes \alpha) = 0$.
-\item Let $\varepsilon \in \{1, -1\}$ and let $p, p' \colon X \to A$ satisfy $\alpha p = \varepsilon p$ and $\alpha p' = \varepsilon p'$. If $D$ is a derivation of $\mu_\sigma$, then $E_D \circ (p \otimes p') = 0$.
+\item If $\mu$ is commutative and $D$ is a derivation of $\mu_\sigma$, then $E_D + E_D \circ (\alpha \otimes \alpha) = 0$.
+\item Let $\varepsilon \in \{1, -1\}$ and let $p, p' \colon X \to A$ satisfy $\alpha p = \varepsilon p$ and $\alpha p' = \varepsilon p'$. If $\mathcal{C}$ is $2$-torsion free, $\mu$ is commutative and $D$ is a derivation of $\mu_\sigma$, then $E_D \circ (p \otimes p') = 0$.
 \end{enumerate}
 \end{theorem}
 
@@ -381,19 +431,21 @@ Hence $E_D + E_D (\alpha \otimes \alpha) = 0$.
 So $E_D (p \otimes p') = 0$.
 \end{proof}
 
-For vector spaces and an involution $\alpha$ with $2$ invertible, $A = A_+ \oplus A_-$.
-Part (iii) says that $E_D$ vanishes on $A_+ \otimes A_+$ and on $A_- \otimes A_-$. % claim-ok: restates Theorem 4.1(iii) for vector spaces
-The vanishing on $A_+ \otimes A_-$ needs a reduced commutative algebra \citep[Theorem 4.1]{Adrabi2026a}.
-It has no form in a general category. % claim-ok: states a limit of Theorem 4.1, shown by the hypothesis on the algebra
+For vector spaces with $2$ invertible and $\alpha^2 = \id_A$, put $A_\pm = \ker(\alpha \mp 1)$; then $A = A_+ \oplus A_-$.
+Part (iii) says that $E_D$ vanishes on $A_+ \otimes A_+$ and on $A_- \otimes A_-$. % claim-ok: restates Theorem 5.1(iii) for vector spaces
+The vanishing on $A_+ \otimes A_-$ does not follow from (iii): it needs a reduced commutative algebra \citep[Theorem 4.1]{Adrabi2026a}. % claim-ok: a limit of Theorem 5.1; what [1, Theorem 4.1] adds is the hypotheses that close it
 
 We end with a question.
-In the survey of Bre\v{s}ar and Zelmanov, algebras are over a field of characteristic not $2$ \citep[Section 1]{BresarZelmanov2025}, and the following theorem holds.
+In the survey of Bre\v{s}ar and Zelmanov, algebras are associative and over a field of characteristic not $2$ \citep[Section 1 and Section 11]{BresarZelmanov2025}, and the following theorem holds.
+An algebra is \emph{semiprime} if $aAa = 0$ implies $a = 0$.
 
 \begin{theorem}[{\citep[Theorem 11.1]{BresarZelmanov2025}}]\label{thm:semiprime}
-A Jordan derivation of a semiprime algebra is a derivation.
+A Jordan derivation of a semiprime associative algebra over a field of characteristic not $2$ is a derivation.
 \end{theorem}
 
-For vector spaces with the flip as braiding, Corollary~\ref{cor:inclusion} gives $\Der(\mu) \subseteq \Der(\mu_+)$, and Theorem~\ref{thm:semiprime} gives the converse inclusion for semiprime algebras.
+The theorem is due to Cusack \citep[Corollary 5]{Cusack1975}, as the survey notes.
+
+For vector spaces with the flip as braiding, Corollary~\ref{cor:inclusion} gives $\Der(\mu) \subseteq \Der(\mu_+)$, and Theorem~\ref{thm:semiprime} gives the converse inclusion for semiprime associative algebras.
 Which hypotheses on $(\mathcal{C}, A)$ give $\Der(\mu_+) = \Der(\mu)$ when $\mu$ is not commutative?
 
 \begin{thebibliography}{99}
@@ -441,7 +493,7 @@ Joyal, A., Street, R.: Braided tensor categories. Adv. Math. \textbf{102}(1), 20
 Martindale, W.S., III: Lie derivations of primitive rings. Michigan Math. J. \textbf{11}, 183--187 (1964).
 
 \bibitem[Pareigis(1998)]{Pareigis1998}
-Pareigis, B.: On Lie algebras in the category of Yetter--Drinfeld modules. arXiv:q-alg/9612023 (1998).
+Pareigis, B.: On Lie algebras in the category of Yetter--Drinfeld modules. Appl. Categ. Structures \textbf{6}, 151--175 (1998); arXiv:q-alg/9612023.
 
 \end{thebibliography}
 

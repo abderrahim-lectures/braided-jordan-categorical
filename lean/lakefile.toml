@@ -1,11 +1,15 @@
 name = "BraidedJordanCategorical"
 defaultTargets = ["Research"]
 
+# Mathlib is pinned to the tag that matches the toolchain in `lean-toolchain`; the exact commit
+# is recorded in `lake-manifest.json`. Move both pins forward together, never backward.
 [[require]]
 name = "mathlib"
 git = "https://github.com/leanprover-community/mathlib4"
-rev = "master"
+rev = "v4.33.1"
 
+# All the mathematics lives in `Research/`. The glob makes every module part of the build, so an
+# orphaned or broken module fails `lake build` instead of being silently skipped.
 [[lean_lib]]
 name = "Research"
-roots = ["Research.BraidedJordanCategorical.Defect", "Research.BraidedJordanCategorical.Family"]
+globs = ["Research.*"]

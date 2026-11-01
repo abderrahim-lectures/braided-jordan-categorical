@@ -1,0 +1,27 @@
+# local working directories
+.scratch/
+paper/build/
+.skill/
+.ultramath/
+
+# Lean build artifacts
+lean/.lake/
+lean/lake-manifest.olean
+*.olean
+*.ilean
+
+# LaTeX intermediates
+*.aux
+*.log
+*.fls
+*.fdb_latexmk
+*.out
+
+# Python caches in the verification scripts
+__pycache__/
+
+# zip archives (reference collections, uploads) are not versioned
+*.zip
+
+# review reports and working records are not part of the release
+results/
